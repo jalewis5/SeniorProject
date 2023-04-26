@@ -19,19 +19,24 @@ const taskSchema = mongoose.Schema(
             default: false
         },
         description:{
-            type: String
+            type: String, 
+            default: "None"
         },
         tags:{
-            type: String
+            type: String,
+            default: "None"
         }, 
         priority:{
-            type: String
+            type: String,
+            default: "None"
         }, 
         dateDue:{
-            type: Date
+            type: Date,
+            default: Date.now()
         },
         timeDue:{
-            type: Date
+            type: Date,
+            default: Date.now()
         }
         //Stretch goal: Collaborators attribute for shared tasks
     },

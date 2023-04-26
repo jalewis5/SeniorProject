@@ -7,7 +7,8 @@ const Task = require("./model/TaskModel"); //import task schema
 const app = express();
 
 //Middleware used to get access to data
-app.use(express.json())
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 //ROUTES
 app.get("/", (req, res) => {
@@ -24,6 +25,17 @@ app.post("/api/tasks", async (req, res) =>{
     }
 });
 
+
+//Get the Tasks
+app.get("/api/tasks", async (req, res) => {
+    try {
+        const tasks = await Task.find(); // {} can be used a parameter for find() to search based on attribute, other this will find all
+        res.status(200).json(tasks);
+    } catch (error) {
+        res.status(500).json({msg: error.message});
+    }
+
+});
 //Using port 4000 for now, see if Github will provide our port number
 const PORT = process.env.PORT || 4000;
 
